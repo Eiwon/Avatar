@@ -3,43 +3,38 @@ import {Platform, StyleSheet, Text, View, TextInput} from 'react-native';
 import Button from 'react-native-button';
 
 type Props = {};
-export default class SignupForVolu extends Component<Props> {
+export default class MainForVolu extends Component<Props> {
   constructor(props, context){
     super(props, context);
+    this.state = { id : 'id', matchingFrequency : 0, acceptRate : 0, };
   }
 
+_pushSetting(){
+  this.props.navigator.push({
+    screen : 'avatar.settingForVolu'
+  });
+}
   render() {
     return (
        <View style={styles.container}>
          <View style={styles.header} />
            <View style={styles.title}>
-             <Text style={{fontSize:35,paddingBottom:20}}>회원가입</Text>
+             <Text style={{fontSize:35,paddingBottom:20}}>내 정보</Text>
              <View style={{width:"100%",borderBottomWidth:0.5,borderColor:'#444'}} />
            </View>
-
          <View style={styles.content}>
            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingBottom:10}}>
-             <Text style={{fontSize:15}}>아이디</Text>
-             <TextInput style={{borderColor: '#aaa', width:'70%', height:35, borderWidth: 1, borderRadius: 5, padding:5}}/>
+             <Text style={{fontSize:15}}>아이디 : {this.state.id}</Text>
            </View>
-
            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingBottom:10}}>
-             <Text style={{fontSize:15}}>비밀번호</Text>
-             <TextInput style={{borderColor: '#aaa', width:'70%', height:35, borderWidth: 1, borderRadius: 5, padding:5}}/>
+             <Text style={{fontSize:15}}>매칭 횟수 : {this.state.matchingFrequency}</Text>
            </View>
-
            <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingBottom:10}}>
-             <Text style={{fontSize:15}}>이름</Text>
-             <TextInput style={{borderColor: '#aaa', width:'70%', height:35, borderWidth: 1, borderRadius: 5, padding:5}}/>
-           </View>
-
-           <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingBottom:10}}>
-             <Text style={{fontSize:15}}>휴대폰 본인인증 api가 jquery 기반인데 react-native에서 jquery 못 쓴대요 </Text>
+             <Text style={{fontSize:15}}>수락률 : {this.state.acceptRate}</Text>
            </View>
          </View>
-
          <View style={styles.footer}>
-           <Button buttonColor={'#023e73'} onPress={() => alert('확인 버튼')}> 확인 </Button>
+           <Button buttonColor={'#023e73'} onPress={this._pushSetting.bind(this)}> 설정 </Button>
          </View>
        </View>
     );
